@@ -11,6 +11,6 @@ class BahanDasar(Base):
     __tablename__ = "bahanDasar"
 
 
-    id = Column(Integer, primary_key=True, index=True)
-    namaBahan = Column(String, index=True)
+    id = Column(Integer, primary_key=True)
+    namaBahan = Column(String)
     kuantitas = Column(Integer)
