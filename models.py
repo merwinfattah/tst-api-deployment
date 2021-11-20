@@ -10,5 +10,5 @@ class BahanDasar(Base):
 
 
     id = Column(Integer, primary_key=True)
-    namaBahan = Column(String)
+    nama = Column(String)
     kuantitas = Column(Integer)
