@@ -1,11 +1,9 @@
 from fastapi import FastAPI,HTTPException,Depends
 from sqlalchemy.orm import Session
-import databases
+from database import SessionLocal, engine
 import crud, models, schemas
-from database import SessionLocal, engine, SQLALCHEMY_DATABASE_URL
 
 models.Base.metadata.create_all(bind=engine)
-database = databases.Database(SQLALCHEMY_DATABASE_URL)
 
 app = FastAPI()
 
@@ -17,13 +15,6 @@ def get_db():
     finally:
         db.close()
 
-@app.on_event("startup")
-async def startup():
-    await database.connect()
-
-@app.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
 
 @app.post("/bahanDasar")
 async def add_bahan_dasar(bahanDasar: schemas.BahanDasar, db: Session = Depends(get_db)):
