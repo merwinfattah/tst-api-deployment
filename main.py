@@ -22,8 +22,8 @@ async def add_bahan_dasar(bahanDasar: schemas.BahanDasar, db: Session = Depends(
     return db_item
 
 @app.put("/bahanDasar")
-async def upadate_bahan_dasar(id_bahan: int, nama_bahan: str, kuantitas: int, db: Session = Depends(get_db)):
-    db_bahan = crud.update_item(db, id_bahan, nama_bahan, kuantitas)
+async def upadate_bahan_dasar(id_bahan: int, nama: str, kuantitas: int, db: Session = Depends(get_db)):
+    db_bahan = crud.update_item(db, id_bahan, nama, kuantitas)
     if db_bahan is None:
         raise HTTPException(status_code=404, detail="Bahan not found")
     return db_bahan
